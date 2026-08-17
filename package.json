@@ -1,0 +1,21 @@
+{
+  "name": "chatkro",
+  "version": "1.0.0",
+  "description": "ChatKro - retro minimalist random video & text chat (Omegle-style)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:public": "node start.js",
+    "test": "node tests/run-tests.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

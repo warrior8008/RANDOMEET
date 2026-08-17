@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="ChatKaro - minimalist random video & text chat. Meet strangers. Talk now." />
+  <title>RANDOMEET — Random Video &amp; Text Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-192x192.png" />
+</head>
+<body>
+
+  <div class="desktop">
+    <div class="xp-window">
+
+      <div class="titlebar">
+        <div class="brand">
+          <span class="brand-name">RANDOMEET</span>
+          <span class="brand-sub" id="onlineLed">0 PEOPLE ONLINE</span>
+        </div>
+        <div class="win-buttons">
+          <button id="themeBtn" class="win-btn theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#127769;</button>
+        </div>
+      </div>
+
+      <main class="stage">
+
+        <section id="modeScreen" class="panel">
+          <div class="panel-head">Pick your chat mode</div>
+          <p class="panel-sub">No accounts. No friends. Just strangers.</p>
+
+          <button id="mode2pBtn" class="mode-btn mode-2p" type="button">
+            <span class="mode-title">&#128101; 2-Person Video Chat</span>
+            <span class="mode-desc">One-on-one with a random stranger. Video + text chat.</span>
+          </button>
+
+          <button id="modeGroupBtn" class="mode-btn mode-group" type="button">
+            <span class="mode-title">&#128102; Group Video Chat (up to 5)</span>
+            <span class="mode-desc">Join a group call with up to 5 people. Video + text chat.</span>
+          </button>
+        </section>
+
+        <section id="lobby" class="panel hidden">
+          <div class="panel-head">Welcome to ChatKaro</div>
+          <p class="panel-sub">No accounts. No friends. Just strangers.</p>
+
+          <div class="mode-bar">
+            <span id="modeLabel" class="mode-chip">MODE: --</span>
+            <button id="changeModeBtn" class="btn" type="button">Change mode</button>
+          </div>
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" maxlength="32" placeholder="Stranger" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label for="interests">Interests (optional)</label>
+            <input id="interests" type="text" maxlength="300" placeholder="music, tech, retro games" autocomplete="off" />
+          </div>
+
+          <label class="check">
+            <input id="enableVideo" type="checkbox" checked />
+            <span>Enable camera &amp; mic</span>
+          </label>
+
+          <button id="startBtn" class="btn btn-primary btn-block">&#9654; Start chat</button>
+          <p id="lobbyMsg" class="status-line" aria-live="polite"></p>
+        </section>
+
+        <section id="call" class="panel hidden">
+          <div class="call-row">
+            <div class="call-main">
+              <div class="video-grid" id="videoGrid">
+                <div class="video-box">
+                  <video id="localVideo" autoplay playsinline muted></video>
+                  <div id="localPlaceholder" class="placeholder">Your camera is off</div>
+                  <span class="video-label">You</span>
+                </div>
+              </div>
+
+              <div class="controls">
+                <button id="micBtn" class="btn">&#127908; Mic: On</button>
+                <button id="camBtn" class="btn">&#128247; Cam: On</button>
+                <button id="switchCamBtn" class="btn">&#128260; Front</button>
+                <button id="nextBtn" class="btn btn-primary">&#9197; Next</button>
+                <button id="reportBtn" class="btn btn-warn">&#128681; Report</button>
+                <button id="stopBtn" class="btn btn-danger">&#9209; Stop</button>
+              </div>
+
+              <p id="callMsg" class="status-line" aria-live="polite"></p>
+            </div>
+
+            <div class="chat-panel">
+              <div class="chat-head">
+                <span id="peerStatus">Connecting to strangers…</span>
+                <span id="modeChip" class="mode-chip call-chip"></span>
+                <span id="typing" class="typing hidden">Someone is typing…</span>
+              </div>
+              <div id="chatLog" class="chat-log" aria-live="polite"></div>
+              <div class="chat-input-row">
+                <input id="chatInput" type="text" maxlength="1000" placeholder="Type a message..." disabled autocomplete="off" />
+                <button id="sendBtn" class="btn" disabled>&#10148; Send</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="statusbar">
+        <span id="connStatus">Offline</span>
+        <span id="ticker"></span>
+      </footer>
+
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-box">
+      <div class="overlay-title" id="overlayTitle">System</div>
+      <p id="overlayText"></p>
+      <button id="overlayOk" class="btn btn-primary">OK</button>
+    </div>
+  </div>
+
+  <script src="vendor/simplepeer.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
